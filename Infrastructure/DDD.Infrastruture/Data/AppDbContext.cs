@@ -13,4 +13,10 @@ public class AppDbContext : DbContext
     {
         optionsBuilder.UseSqlServer("Server=localhost;Database=ddd;User Id=sa;Password=12345678@Docker;TrustServerCertificate=true;");
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+    }
 }
